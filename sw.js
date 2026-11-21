@@ -1,5 +1,5 @@
-/* Poker Licznik 4.3.0 — kontrolowana aktualizacja i pamięć offline. */
-const CACHE='poker-licznik-v11-szybki-wybor-430';
+/* Poker Licznik 4.4.0 — kontrolowana aktualizacja i pamięć offline. */
+const CACHE='poker-licznik-v12-kopia-440';
 const PREFIX='poker-licznik-';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
