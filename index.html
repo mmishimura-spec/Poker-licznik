@@ -67,7 +67,7 @@
   Aplikacja wymaga przeglądarki Safari. Otwórz jej adres HTTPS w Safari i wybierz „Dodaj do ekranu początkowego”. Nie otwieraj pliku HTML w podglądzie aplikacji Pliki.
 </div>
 <main class="shell">
-<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.1.0 · Sprawdzanie aktualizacji po połączeniu z internetem</span><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div>
+<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.1.1 · Sprawdzanie aktualizacji po połączeniu z internetem</span><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div>
 <div id="updateBanner" role="status" aria-live="polite"><div><strong id="updateHeading">Dostępna jest aktualizacja</strong><p id="updateDescription">Zapisane gry i statystyki pozostaną bez zmian.</p></div><button type="button" id="installUpdate">Zaktualizuj teraz</button></div>
 <nav aria-label="Widoki aplikacji" class="main-tabs" role="tablist"><button aria-controls="view-game" aria-selected="true" class="main-tab active" data-view="game" role="tab" type="button">♠ Rozgrywka</button><button aria-controls="view-history" aria-selected="false" class="main-tab" data-view="history" role="tab" type="button">◷ Historia</button><button aria-controls="view-stats" aria-selected="false" class="main-tab" data-view="stats" role="tab" type="button">▥ Statystyki</button></nav>
 <div aria-label="Rozgrywka" class="view-container active" id="view-game" role="tabpanel"><div class="game-actions actions"><button class="btn primary" id="finish">✓ Zakończ i zapisz grę</button><button class="btn" id="reset">Nowa rozgrywka</button></div><div class="layout"><div><section class="panel"><div class="top"><div><div class="eyebrow">01 / Gracze</div><h2>Wpisz ilość żetonów każdego nominału</h2></div><button class="btn primary" id="addPlayer" type="button">+ Gracz</button></div><div class="fields" style="margin-bottom:15px"><div class="field"><label for="gameDate">Data rozgrywki</label><input id="gameDate" required="" type="date"/></div><div class="field full" style="display:flex;align-items:end"><span class="tag" id="currentSaved">Rozgrywka niezapisana</span></div></div><div class="playerbar" id="playerTabs"></div><div class="fields"><div class="field name"><label for="name">Imię gracza</label><input autocomplete="off" id="name" maxlength="40"/></div><div class="field"><label for="buyin">Wpisowe (zł)</label><input id="buyin" inputmode="decimal" min="0" step="0.01" type="number"/></div><div class="field"><label for="rebuy">Dokupienia (zł)</label><input id="rebuy" inputmode="decimal" min="0" step="0.01" type="number"/></div></div><div class="top"><h2>Ilości żetonów na koniec gry</h2><button class="btn" id="clearChips">Wyzeruj żetony</button></div><p class="hint" style="margin:0 0 14px">Wpisz <b>ile sztuk</b> żetonów danego nominału ma gracz. Aplikacja liczy: <b>ilość × nominał</b>, a następnie sumuje wszystkie nominały.</p><div class="chiplist" id="chipList"></div><div class="summaryline"><span>Łączna liczba żetonów</span><strong id="playerChipCount">0 szt.</strong></div><div class="summaryline"><span>Wypłata gracza ze wspólnej puli</span><strong id="playerStack">0,00 zł</strong></div><div class="summaryline"><span>Wynik gracza (wypłata − wpłaty)</span><strong id="playerNet">0,00 zł</strong></div><button class="btn danger" id="removePlayer" style="margin-top:14px">Usuń gracza</button></section><section class="panel"><div class="top"><div><div class="eyebrow">02 / Żetony</div><h2>Stałe nominały</h2></div></div><div class="muted" style="font-size:13px">Pięć kolorów: czerwony 5 gr, niebieski 10 gr, zielony 20 gr, czarny 50 gr i pomarańczowy 100 gr (1 zł). Wszystkie wartości są przeliczane na złote.</div><div class="nominal-edit" id="nominalBadges"></div></section></div><aside><section class="panel"><div class="eyebrow">03 / Podsumowanie</div><h2>Bilans rozgrywki</h2><div class="totals" style="margin-top:15px"><div class="stat"><div class="lab">Wspólna pula — wpłaty</div><div class="value" id="totalIn">0 zł</div></div><div class="stat"><div class="lab">Suma wypłat z puli</div><div class="value" id="totalOut">0 zł</div></div><div class="stat"><div class="lab">Różnica</div><div class="value" id="totalDiff">0 zł</div></div></div><div class="notice" id="integrity"></div><div class="hint">Każdy wpłaca pieniądze do jednej wspólnej puli. Po grze każdy otrzymuje gotówkę z tej puli w wysokości wartości swoich żetonów. Suma wypłat musi być równa wspólnej puli.</div></section><section class="panel"><div class="sectionhead"><div><div class="eyebrow">04 / Wyniki</div><h2>Wyniki graczy</h2></div><span class="tag" id="playerCount"></span></div><div class="tablewrap"><table><thead><tr><th>Gracz</th><th>Wpłaty</th><th>Wypłata z puli</th><th>Zysk / strata</th></tr></thead><tbody id="results"></tbody></table></div></section><section class="panel"><div class="eyebrow">05 / Rozliczenie</div><h2>Wypłaty ze wspólnej puli</h2><div id="settlements"></div><div class="hint">Kwoty do wypłaty wyznacza wartość żetonów każdego gracza. Nie ma przelewów między graczami. Wypłaty można zatwierdzić, gdy wartość wszystkich żetonów zgadza się ze wspólną pulą.</div></section></aside></div></div><div aria-label="Historia" class="view-container" id="view-history" role="tabpanel"><section class="panel"><div class="eyebrow">02 / Historia</div><h2>Historia rozgrywek</h2><p class="hint">Każdą zakończoną grę zapisz raz przyciskiem „Zakończ i zapisz grę”. Nowa gra nie usuwa historii. Eksport obejmuje <b>wszystkie</b> zapisane gry.</p><div class="tablewrap" id="historyList"></div><div class="hint" id="historyCount"></div><div class="export-actions actions"><button class="btn" id="export">↗ Historia do Numbers</button><button class="btn" id="download">Pobierz historię CSV</button></div><div aria-live="polite" class="history-detail" id="historyDetail"></div></section><section class="panel"><h2>Eksport do Apple Numbers</h2><p class="hint">Plik <b>Poker_Historia_Rozgrywek.csv</b> zawsze zawiera całą historię zapisanych gier z datami, kolorami żetonów, wpłatami, wypłatami i wynikami. Można wybrać „Historia do Numbers” i udostępnić plik, albo użyć „Pobierz historię CSV”.</p><p class="hint"><b>Uwaga:</b> Safari nie może automatycznie nadpisać dokumentu otwartego w Numbers. Po kolejnym eksporcie zapisz nowy CSV zamiast poprzedniego w Plikach, a następnie otwórz go w Numbers. Nie jest to automatyczna synchronizacja istniejącego arkusza Numbers.</p><p class="hint">Historia przechowywana jest lokalnie na tym iPadzie. Nie usuwaj danych witryn. Dla bezpieczeństwa regularnie eksportuj plik.</p></section></div><div aria-label="Statystyki" class="view-container" id="view-stats" role="tabpanel"><section class="panel" id="statsPanel"><div class="eyebrow">03 / Statystyki</div><h2>Ranking i statystyki graczy</h2><p class="hint">Statystyki ze <b>wszystkich zapisanych</b> rozgrywek. Ranking według łącznego zysku netto. Aktualizuje się automatycznie po zapisaniu gry.</p><div class="stats-overview" id="statsOverview"></div><div class="stats-tools"><button class="btn" id="statsExport" type="button">↗ Statystyki do Numbers</button><button class="btn" id="statsDownload" type="button">Pobierz statystyki CSV</button></div><div class="tablewrap" id="statsTable"></div><div aria-live="polite" id="playerProfile" class="profile-panel hide"></div><div class="stats-tip">Wygrana = dodatni wynik netto; remis = wynik 0 zł. Skuteczność to odsetek gier z dodatnim wynikiem. Gracze są rozpoznawani po imieniu/nazwie (bez rozróżniania wielkości liter). Używaj tej samej nazwy w kolejnych grach, aby wyniki się sumowały.</div></section></div><div class="footer">Po dodaniu strony HTTPS do ekranu początkowego korzystaj z ikony „Poker Licznik” także bez sieci. Dane są zapisywane lokalnie na tym iPadzie — po zapisaniu kolejnej gry wykonaj eksport całej historii CSV do Numbers jako kopię archiwalną. Nie czyść danych witryn Safari, jeśli chcesz zachować rozgrywkę.</div></main><div id="toast" role="status"></div>
@@ -216,7 +216,7 @@ render();})();
 </script><script>
 /* Niezależny aktualizator PWA: nie modyfikuje kluczy ani zawartości localStorage. */
 (()=>{'use strict';
-const CURRENT_VERSION='4.1.0';
+const CURRENT_VERSION='4.1.1';
 const label=document.getElementById('updateStatus');
 const banner=document.getElementById('updateBanner');
 const heading=document.getElementById('updateHeading');
@@ -256,14 +256,26 @@ async function checkUpdates(manual=false){
    show(info.version);
    if(registration){try{await registration.update();}catch(e){console.warn('Sprawdzenie service worker',e);}}
   }else{
-   if(registration && registration.waiting){show(info.version);}
-   else {status('Wersja '+CURRENT_VERSION+' · aktualna');banner.classList.remove('visible');}
+   // Waiting service worker may belong to the SAME app version. Never present it as an update.
+   latestVersion=null;
+   status('Wersja '+CURRENT_VERSION+' · aktualna');
+   banner.classList.remove('visible');
   }
  }catch(e){status('Wersja '+CURRENT_VERSION+' · nie można sprawdzić aktualizacji');if(manual)console.warn('Aktualizacje:',e);}
  finally{checkBusy=false;}
 }
 async function applyUpdate(){
  if(isApplying)return;
+ // Never reload merely because an old worker is waiting. Reconfirm the remote version.
+ try {
+  const r=await fetch(cacheBust(),{cache:'no-store',credentials:'same-origin'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const info=await r.json();
+  if(!info||typeof info.version!=='string'||compare(info.version,CURRENT_VERSION)<=0){
+   latestVersion=null;banner.classList.remove('visible');
+   status('Wersja '+CURRENT_VERSION+' · aktualna');return;
+  }
+ }catch(e){status('Nie można potwierdzić aktualizacji. Sprawdź internet.');return;}
  isApplying=true;updateButton.disabled=true;updateButton.textContent='Aktualizowanie…';
  status('Instalowanie aktualizacji…');
  try{
@@ -294,7 +306,8 @@ if('serviceWorker' in navigator && location.protocol==='https:'){
  window.addEventListener('load',async()=>{
   try{
    registration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
-   if(registration.waiting)show('nowa');
+   // Do not infer a new app version just from registration.waiting.
+   // The source of truth is the version.json version comparison.
    registration.addEventListener('updatefound',()=>{
     const worker=registration.installing;
     if(!worker)return;
