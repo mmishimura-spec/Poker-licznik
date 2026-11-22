@@ -1,5 +1,5 @@
-/* Poker Licznik 4.7.1 — kontrolowana aktualizacja i pamięć offline. */
-const CACHE='poker-licznik-v22-bez-numbers-471';
+/* Poker Licznik 4.7.2 — kontrolowana aktualizacja i pamięć offline. */
+const CACHE='poker-licznik-v23-historia-csv-472';
 const PREFIX='poker-licznik-';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
