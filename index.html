@@ -141,7 +141,7 @@
   Aplikacja wymaga przeglądarki Safari. Otwórz jej adres HTTPS w Safari i wybierz „Dodaj do ekranu początkowego”. Nie otwieraj pliku HTML w podglądzie aplikacji Pliki.
 </div>
 <main class="shell">
-<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.6.3 · Sprawdzanie aktualizacji po połączeniu z internetem</span><div class="version-buttons"><button type="button" id="openBackupArea" class="btn backup-entry">⚙ Ustawienia i kopie</button><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div></div>
+<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.6.4 · Sprawdzanie aktualizacji po połączeniu z internetem</span><div class="version-buttons"><button type="button" id="openBackupArea" class="btn backup-entry">⚙ Ustawienia i kopie</button><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div></div>
 <div id="updateBanner" role="status" aria-live="polite"><div><strong id="updateHeading">Dostępna jest aktualizacja</strong><p id="updateDescription">Zapisane gry i statystyki pozostaną bez zmian.</p></div><button type="button" id="installUpdate">Zaktualizuj teraz</button></div>
 <nav aria-label="Widoki aplikacji" class="main-tabs" role="tablist"><button aria-controls="view-game" aria-selected="true" class="main-tab active" data-view="game" role="tab" type="button">♠ Rozgrywka</button><button aria-controls="view-history" aria-selected="false" class="main-tab" data-view="history" role="tab" type="button">◷ Historia</button><button aria-controls="view-stats" aria-selected="false" class="main-tab" data-view="stats" role="tab" type="button">▥ Statystyki</button></nav>
 <div aria-label="Rozgrywka" class="view-container active" id="view-game" role="tabpanel"><section class="roster-bar"><div><b>👥 Stała baza graczy</b><div class="hint">Wybierz zapisane osoby do rozgrywki. Baza pozostaje na tym iPadzie.</div></div><div class="quick-top-actions"><button type="button" class="btn primary" id="openQuickSelect">✓ Szybki wybór graczy</button><button type="button" class="btn" id="openRoster">Zarządzaj bazą</button></div></section><section class="ready-panel hide" id="readyPanel" role="status"><div class="eyebrow">STAN GOTOWOŚCI</div><h2>Oczekiwanie na nową rozgrywkę</h2><p id="readyDescription">Ostatnia zapisana rozgrywka pozostaje w historii.</p><div class="actions"><button class="btn primary" type="button" id="readyCarry">↪ Rozpocznij z zachowaną pulą</button><button class="btn" type="button" id="readyFresh">Nowa gra od zera</button></div><p class="hint">Jeśli pieniądze graczy pozostały w kasie, użyj opcji z zachowaną pulą i wybierz uczestników. Salda nieobecnych pozostaną w rezerwie.</p></section><div class="cancel-game-bar" id="cancelGameBar"><div><strong>Przerwij bieżącą rozgrywkę</strong><div class="hint">Anulowanie nie zmienia historii ani sald z ostatniej zapisanej gry.</div></div><button type="button" class="btn danger" id="cancelCurrentGame">✕ Anuluj rozgrywkę</button></div><section class="stage-switch" aria-label="Etapy rozgrywki">
@@ -541,7 +541,7 @@ function backupMessage(message,warning=false){const e=el('backupFeedback');e.tex
 function downloadBackup(blob,filename){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
 function createBackup(){
  // Zachowujemy także wszystkie inne pola aktualnego obiektu data, w tym ustawienia.
- const payload={format:BACKUP_FORMAT,schema:BACKUP_SCHEMA,appVersion:'4.6.3',exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(data)),history:JSON.parse(JSON.stringify(history)),roster:roster.slice()};
+ const payload={format:BACKUP_FORMAT,schema:BACKUP_SCHEMA,appVersion:'4.6.4',exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(data)),history:JSON.parse(JSON.stringify(history)),roster:roster.slice()};
  const json=JSON.stringify(payload,null,2);
  const file=new Blob([json],{type:'application/json;charset=utf-8'});
  const filename='Poker_Kopia_'+today()+'_'+new Date().toTimeString().slice(0,8).replace(/:/g,'-')+'.json';
@@ -698,7 +698,7 @@ setPhase(phase);
 </script><script>
 /* Niezależny aktualizator PWA: nie modyfikuje kluczy ani zawartości localStorage. */
 (()=>{'use strict';
-const CURRENT_VERSION='4.6.2';
+const CURRENT_VERSION='4.6.4';
 const label=document.getElementById('updateStatus');
 const banner=document.getElementById('updateBanner');
 const heading=document.getElementById('updateHeading');
