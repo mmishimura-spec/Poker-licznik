@@ -129,6 +129,11 @@
 #rolloverGame:disabled{opacity:.45;cursor:not-allowed}
 
 .ready-panel{margin:16px 0;padding:22px;border-radius:17px;background:#183a2c;border:1px solid #bb9e60}.ready-panel h2{margin:8px 0}.ready-panel .actions{margin:15px 0;display:flex;flex-wrap:wrap;gap:10px}.ready-panel .hint{color:#e2d7bb}#view-game.is-ready .stage-switch,#view-game.is-ready .layout,#view-game.is-ready #carryBanner,#view-game.is-ready #bankBalanceInfo{display:none!important}#view-game.is-ready .ready-panel{display:block!important}
+
+/* Anulowanie niezapisanej rozgrywki – wyraźnie poza końcowym rozliczeniem */
+.cancel-game-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:#241f1b;border:1px solid #6e4b43;border-radius:15px;padding:13px 17px;margin:0 0 16px}
+.cancel-game-bar .hint{margin-top:4px}.cancel-game-bar strong{font-size:14px}
+#view-game.is-ready #cancelGameBar{display:none!important}
 </style>
 </head>
 <body>
@@ -136,10 +141,10 @@
   Aplikacja wymaga przeglądarki Safari. Otwórz jej adres HTTPS w Safari i wybierz „Dodaj do ekranu początkowego”. Nie otwieraj pliku HTML w podglądzie aplikacji Pliki.
 </div>
 <main class="shell">
-<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.6.2 · Sprawdzanie aktualizacji po połączeniu z internetem</span><div class="version-buttons"><button type="button" id="openBackupArea" class="btn backup-entry">⚙ Ustawienia i kopie</button><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div></div>
+<header><div class="brand"><div aria-hidden="true" class="logo">♠</div><div><div class="eyebrow">Poker • offline</div><h1>Licznik żetonów</h1><p class="sub">Na iPadzie • 5 nominałów • eksport do Numbers</p></div></div></header><div class="version-tools"><span id="updateStatus" role="status">Wersja 4.6.3 · Sprawdzanie aktualizacji po połączeniu z internetem</span><div class="version-buttons"><button type="button" id="openBackupArea" class="btn backup-entry">⚙ Ustawienia i kopie</button><button type="button" id="checkUpdates">Sprawdź aktualizacje</button></div></div>
 <div id="updateBanner" role="status" aria-live="polite"><div><strong id="updateHeading">Dostępna jest aktualizacja</strong><p id="updateDescription">Zapisane gry i statystyki pozostaną bez zmian.</p></div><button type="button" id="installUpdate">Zaktualizuj teraz</button></div>
 <nav aria-label="Widoki aplikacji" class="main-tabs" role="tablist"><button aria-controls="view-game" aria-selected="true" class="main-tab active" data-view="game" role="tab" type="button">♠ Rozgrywka</button><button aria-controls="view-history" aria-selected="false" class="main-tab" data-view="history" role="tab" type="button">◷ Historia</button><button aria-controls="view-stats" aria-selected="false" class="main-tab" data-view="stats" role="tab" type="button">▥ Statystyki</button></nav>
-<div aria-label="Rozgrywka" class="view-container active" id="view-game" role="tabpanel"><section class="roster-bar"><div><b>👥 Stała baza graczy</b><div class="hint">Wybierz zapisane osoby do rozgrywki. Baza pozostaje na tym iPadzie.</div></div><div class="quick-top-actions"><button type="button" class="btn primary" id="openQuickSelect">✓ Szybki wybór graczy</button><button type="button" class="btn" id="openRoster">Zarządzaj bazą</button></div></section><section class="ready-panel hide" id="readyPanel" role="status"><div class="eyebrow">STAN GOTOWOŚCI</div><h2>Oczekiwanie na nową rozgrywkę</h2><p id="readyDescription">Ostatnia zapisana rozgrywka pozostaje w historii.</p><div class="actions"><button class="btn primary" type="button" id="readyCarry">↪ Rozpocznij z zachowaną pulą</button><button class="btn" type="button" id="readyFresh">Nowa gra od zera</button></div><p class="hint">Jeśli pieniądze graczy pozostały w kasie, użyj opcji z zachowaną pulą i wybierz uczestników. Salda nieobecnych pozostaną w rezerwie.</p></section><section class="stage-switch" aria-label="Etapy rozgrywki">
+<div aria-label="Rozgrywka" class="view-container active" id="view-game" role="tabpanel"><section class="roster-bar"><div><b>👥 Stała baza graczy</b><div class="hint">Wybierz zapisane osoby do rozgrywki. Baza pozostaje na tym iPadzie.</div></div><div class="quick-top-actions"><button type="button" class="btn primary" id="openQuickSelect">✓ Szybki wybór graczy</button><button type="button" class="btn" id="openRoster">Zarządzaj bazą</button></div></section><section class="ready-panel hide" id="readyPanel" role="status"><div class="eyebrow">STAN GOTOWOŚCI</div><h2>Oczekiwanie na nową rozgrywkę</h2><p id="readyDescription">Ostatnia zapisana rozgrywka pozostaje w historii.</p><div class="actions"><button class="btn primary" type="button" id="readyCarry">↪ Rozpocznij z zachowaną pulą</button><button class="btn" type="button" id="readyFresh">Nowa gra od zera</button></div><p class="hint">Jeśli pieniądze graczy pozostały w kasie, użyj opcji z zachowaną pulą i wybierz uczestników. Salda nieobecnych pozostaną w rezerwie.</p></section><div class="cancel-game-bar" id="cancelGameBar"><div><strong>Przerwij bieżącą rozgrywkę</strong><div class="hint">Anulowanie nie zmienia historii ani sald z ostatniej zapisanej gry.</div></div><button type="button" class="btn danger" id="cancelCurrentGame">✕ Anuluj rozgrywkę</button></div><section class="stage-switch" aria-label="Etapy rozgrywki">
  <div class="stage-header"><div><span class="eyebrow">ETAPY ROZGRYWKI</span><h2 id="stageTitle">1. Start i wpłaty</h2></div><span class="tag" id="stageTag">PRZED / W TRAKCIE GRY</span></div>
  <div class="stage-tabs" role="group" aria-label="Etap rozgrywki"><button type="button" id="stageStart" class="stage-tab active" aria-pressed="true">① Start gry i wpłaty</button><button type="button" id="stageEnd" class="stage-tab" aria-pressed="false">② Koniec gry i wypłaty</button></div>
  <p id="stageHelp" class="hint">Wybierz uczestników, wprowadź wpisowe oraz ewentualne dokupienia. Nie licz jeszcze żetonów końcowych.</p>
@@ -472,6 +477,36 @@ function switchView(view){
 document.querySelectorAll('.main-tab').forEach(x=>x.addEventListener('click',()=>switchView(x.dataset.view)));
 document.getElementById('openBackupArea').addEventListener('click',()=>switchView('backup'));
 document.getElementById('closeBackupArea').addEventListener('click',()=>switchView(lastMainView));
+// Anulowanie dotyczy wyłącznie niezapisanej rundy. Ostatnia zakończona gra
+// i jej wypłaty nadal stanowią źródło indywidualnych sald do następnej rundy.
+el('cancelCurrentGame').addEventListener('click',()=>{
+ if(data.waitingForNewGame){toast('Aplikacja już czeka na nową rozgrywkę.');return;}
+ if(data.savedGameId){alert('Ta rozgrywka została już zapisana. Nie można jej anulować.');return;}
+ const last=history.length?history[history.length-1]:null;
+ const oldTotal=poolC();
+ const answer=prompt('ANULOWANIE NIEZAPISANEJ GRY\n\nBieżące wpłaty, żetony i wybór uczestników zostaną odrzucone.\n'+
+  (last?'Ostatnia zakończona gra: '+last.date+'. Jej salda pozostaną do wykorzystania w następnej grze.':'Brak zakończonych gier w historii.')+ '\n'+
+  'Aktualna pula rozpoczętej gry: '+money(oldTotal/100)+'.\nHistoria i baza graczy nie zostaną zmienione.\n\nAby potwierdzić, wpisz ANULUJ:');
+ if(answer!=='ANULUJ')return;
+ const lastPlayers=last?.players?.length?last.players.map(p=>p.name):roster.slice(0,2);
+ const names=lastPlayers.length?lastPlayers:['Gracz 1','Gracz 2'];
+ const next=initial();
+ next.players=names.slice(0,12).map((name,i)=>({id:i+1,name,buyin:0,rebuy:0,carryIn:0,chips:{}}));
+ next.nextId=next.players.length+1;
+ next.selected=next.players[0].id;
+ next.savedGameId=last?last.id:null;
+ next.waitingForNewGame=true;
+ // To salda już odłożone dla nieobecnych; salda ostatniej gry
+ // są odczytywane z historii przez latestBalances() i nie są tu duplikowane.
+ next.bankBalances={...(data.bankBalances||{})};
+ try{localStorage.setItem(STORE,JSON.stringify(next));}
+ catch(e){alert('Nie udało się zapisać stanu oczekiwania. Rozgrywka nie została anulowana.');return;}
+ data=next;
+ try{localStorage.setItem('poker-licznik-phase-450','start');}catch(e){}
+ render();switchView('game');
+ el('stageStart').click();
+ toast('Anulowano niezapisaną grę. Historia i salda pozostają zachowane.');
+});
 el('restoreReady').addEventListener('click',()=>{
  const latest=history.length?history[history.length-1]:null;
  if(!latest){alert('Nie ma zapisanej rozgrywki w historii. Nie można ustawić poprzedniej gry jako ostatniej.');return;}
@@ -506,7 +541,7 @@ function backupMessage(message,warning=false){const e=el('backupFeedback');e.tex
 function downloadBackup(blob,filename){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
 function createBackup(){
  // Zachowujemy także wszystkie inne pola aktualnego obiektu data, w tym ustawienia.
- const payload={format:BACKUP_FORMAT,schema:BACKUP_SCHEMA,appVersion:'4.6.2',exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(data)),history:JSON.parse(JSON.stringify(history)),roster:roster.slice()};
+ const payload={format:BACKUP_FORMAT,schema:BACKUP_SCHEMA,appVersion:'4.6.3',exportedAt:new Date().toISOString(),data:JSON.parse(JSON.stringify(data)),history:JSON.parse(JSON.stringify(history)),roster:roster.slice()};
  const json=JSON.stringify(payload,null,2);
  const file=new Blob([json],{type:'application/json;charset=utf-8'});
  const filename='Poker_Kopia_'+today()+'_'+new Date().toTimeString().slice(0,8).replace(/:/g,'-')+'.json';
